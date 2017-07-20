@@ -1,0 +1,9 @@
+{
+  "tesla": {
+    "key": "tesla",
+    "workingDirectory": "/home/sigurdur/Desktop/dev/teslaclient",
+    "file": "node /home/sigurdur/Desktop/dev/teslaclient/tesla-client.js",
+    "user": 0,
+    "env": {}
+  }
+}
