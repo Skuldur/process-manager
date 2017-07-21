@@ -1,20 +1,16 @@
-
-
 const cli = require('commander');
-const ProcessFactory = require('./ProcessFactory.js');
+const cliInterface = require('./js/cli-interface.js');
 
-const factory = new ProcessFactory();
+cli.allowUnknownOption(false);
+cli
+  .option('init', 'Initialize the process manager', cliInterface.init)
+  .option('add <json>', 'Add processes that should run', cliInterface.add)
+  .option('start <process>', 'Start process', cliInterface.start)
+  .option('stop <process>', 'Stop process', cliInterface.stop)
+  .option('restart <process>', 'Restart process', cliInterface.restart)
+  .option('status [process]', 'Get the status of a process', cliInterface.getStatus)
 
-tamscli.allowUnknownOption(false);
-  tamscli
-    .version(pkg.version)
-    .option('add <json>', 'Configure TAMS settings file', addProcesses)
-    .option('start <process>', 'Init release store, creating first TAMS release', factory.start)
-    .option('stop <process>', 'Add artifact to new release', factory.stop)
-    .option('status <process>', 'Remove artifact from new release', factory.getStatus)
-    .option('allstatus', 'Remove artifact from new release', factory.getAllStatuses)
-
-    .parse(process.argv);
+  .parse(process.argv);
 
 function addProcesses(processFile) {
   const processes = require(processFile);
@@ -22,6 +18,8 @@ function addProcesses(processFile) {
     factory.create(processes[proc]);
   }
 }
+
+
 
 
 // const processes = require("./processes.json");
