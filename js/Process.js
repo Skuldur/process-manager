@@ -23,7 +23,6 @@ class TerminalProcess {
   }
 
   start() {
-    console.log("FILE", this.file);
     this.proc = exec(this.file, { uid: this.user, env: this.env, cwd: this.workingDirectory });
 
     this.proc.on('error', (code) => {
@@ -43,11 +42,11 @@ class TerminalProcess {
     });
 
     this.setStatus(ACTIVE);
-    console.log(this.proc.pid);
+    //console.log(this.proc.pid);
   }
 
   stop(callback) {
-    kill(this.proc, callback);
+    kill(this.proc.pid, callback);
     this.setStatus(TERMINATED);
   }
 
@@ -67,17 +66,14 @@ class TerminalProcess {
   }
 }
 
-function kill(process, callback) {
-  const pid = process.pid;
-  callback = callback || function () {};
+function kill(pid, callback) {
+  callback = callback || function() {console.log("")};
 
   if(pid === undefined) {
     callback();
   } else {
-    const signal = 'SIGTERM';
-    console.log(pid);
     
-    killTree(pid, 'SIGKILL', callback); 
+    killTree(pid, 'SIGTERM', callback); 
   }
 }
 

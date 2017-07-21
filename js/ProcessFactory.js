@@ -1,21 +1,15 @@
 const TerminalProcess = require('./Process.js');
 const colors = require("colors");
 
+
 class ProcessFactory {
 
   constructor() {
     this.processes = {};
-
-    process.on('uncaughtException', function(err){
-      for(proc in this.processes) {
-        this.stop(this.processes[proc]);
-      }
-      console.log(err);
-      process.exit(72);  
-    });
   }
 
   create(args) {
+    console.log(args);
     const proc = new TerminalProcess(args);
     this.processes[args.key] = proc;
   }
@@ -25,6 +19,7 @@ class ProcessFactory {
   }
 
   stop(processId) {
+    console.log(processId);
     this.processes[processId].stop();
   }
 
@@ -34,14 +29,19 @@ class ProcessFactory {
 
   getStatus(processId) {
     const { color, status } = this.processes[processId].getStatus();
-    console.log(color, `${processId} is ${status}`);
+    return { color, status, processId };
   }
 
   getAllStatuses() {
+    const list = [];
+
     for(const proc in this.processes) {
-      const status = this.processes[proc].getStatus();
-      console.log(`${proc.toUpperCase()}`.cyan, '       ',`${status.status.toUpperCase()}`[status.color]);
+      list.push(this.getStatus(proc));
     }
+
+    console.log(list);
+
+    return list;
   }
 
   
