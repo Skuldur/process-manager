@@ -1,0 +1,16 @@
+{
+  "tesla": {
+    "key": "tesla",
+    "workingDirectory": "/mnt/c/Users/Skuli/Documents/GitHub/process-manager",
+    "file": "node /mnt/c/Users/Skuli/Documents/GitHub/process-manager/test.js",
+    "user": 0,
+    "env": {}
+  },
+  "chewy": {
+    "key": "chewy",
+    "workingDirectory": "/mnt/c/Users/Skuli/Documents/GitHub/process-manager",
+    "file": "node /mnt/c/Users/Skuli/Documents/GitHub/process-manager/test.js",
+    "user": 0,
+    "env": {}
+  }
+}

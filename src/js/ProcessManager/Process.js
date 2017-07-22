@@ -1,4 +1,5 @@
 const cp = require('child_process');
+const fs = require('fs');
 const exec = cp.exec;
 const killTree = require('tree-kill');
 
@@ -23,26 +24,20 @@ class TerminalProcess {
   }
 
   start() {
+    this.logStream = fs.createWriteStream(`./logs/${this.key}.log`, {flags: 'a'});
+
     this.proc = exec(this.file, { uid: this.user, env: this.env, cwd: this.workingDirectory });
 
+    this.proc.stdout.pipe(this.logStream);
+    this.proc.stderr.pipe(this.logStream);
     this.proc.on('error', (code) => {
       console.log(`child process exited with code ${code}`);
     });
-
-    this.proc.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-    });
-
-    this.proc.stderr.on('data', (data) => {
-      console.log(`stderr: ${data}`);
-    });
-
     this.proc.on('close', (code) => {
       console.log(`child process exited with code ${code}`);
     });
 
     this.setStatus(ACTIVE);
-    //console.log(this.proc.pid);
   }
 
   stop(callback) {
@@ -67,12 +62,11 @@ class TerminalProcess {
 }
 
 function kill(pid, callback) {
-  callback = callback || function() {console.log("")};
+  callback = callback || function() {};
 
   if(pid === undefined) {
     callback();
   } else {
-    
     killTree(pid, 'SIGTERM', callback); 
   }
 }

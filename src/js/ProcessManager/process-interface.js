@@ -10,9 +10,16 @@ const factory = new ProcessFactory();
 
 io.on('connection', (client) => {
   client.on('add', (processes) => {
-    Object.keys(processes).map((proc) => {
-      factory.create(processes[proc]);
+    Object.keys(processes).map((processId) => {
+      const proc = processes[processId];
+      
+      if(factory.contains(proc.key)) {
+        client.emit('processExists', proc.key);
+      } else {
+        factory.create(proc);
+      }
     });
+    
     client.emit('messageReceived');
   });
 
@@ -31,8 +38,7 @@ io.on('connection', (client) => {
     client.emit('messageReceived');
   });
 
-  client.on('getStatus', (id) => {
-    console.log('I am here');
+  client.on('status', (id) => {
     const status = factory.getStatus(id);
     client.emit('statusReply', status);
   });
@@ -44,17 +50,11 @@ io.on('connection', (client) => {
 });
 
 process.on('SIGTERM', () => {
-  console.log("WAIT A MINUTE");
   server.close();
 });
 
 process.on('uncaughtException', function(err){
-  // for(proc in this.processes) {
-  //   this.stop(this.processes[proc]);
-  // }
   console.log(err);
-  // process.exit(72); 
   server.close();
   kill(process.pid);
-
 });

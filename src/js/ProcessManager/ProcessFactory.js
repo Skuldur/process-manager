@@ -9,7 +9,6 @@ class ProcessFactory {
   }
 
   create(args) {
-    console.log(args);
     const proc = new TerminalProcess(args);
     this.processes[args.key] = proc;
   }
@@ -19,7 +18,6 @@ class ProcessFactory {
   }
 
   stop(processId) {
-    console.log(processId);
     this.processes[processId].stop();
   }
 
@@ -32,14 +30,16 @@ class ProcessFactory {
     return { color, status, processId };
   }
 
+  contains(processId) {
+    return this.processes[processId] !== undefined;
+  }
+
   getAllStatuses() {
     const list = [];
 
     for(const proc in this.processes) {
       list.push(this.getStatus(proc));
     }
-
-    console.log(list);
 
     return list;
   }
