@@ -82,8 +82,13 @@ function exit() {
 }
 
 function killProcessManager(callback) {
-  const pid = fs.readFileSync('./data/processrunnerId.txt');
-  kill(pid, 'SIGTERM', callback);
+  try {
+    const pid = fs.readFileSync('./data/processrunnerId.txt');
+    kill(pid, 'SIGTERM', callback);
+  } catch(err) {
+    callback();
+  }
+
 }
 
 client.on('messageReceived', () => {
