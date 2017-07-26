@@ -30,6 +30,7 @@ class TerminalProcess {
 
     this.proc.stdout.pipe(this.logStream);
     this.proc.stderr.pipe(this.logStream);
+    
     this.proc.on('error', (code) => {
       console.log(`child process exited with code ${code}`);
     });

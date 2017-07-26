@@ -44,6 +44,11 @@ class ProcessFactory {
     return list;
   }
 
+  remove(processId) {
+    this.stop(processId);
+    delete this.processes[processId];
+  }
+
   
 }
 

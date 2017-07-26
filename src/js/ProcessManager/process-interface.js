@@ -23,6 +23,11 @@ io.on('connection', (client) => {
     client.emit('messageReceived');
   });
 
+  client.on('remove', (id) => {
+    factory.remove(id);
+    client.emit('messageReceived');
+  });
+
   client.on('start', (id) => {
     factory.start(id);
     client.emit('messageReceived');

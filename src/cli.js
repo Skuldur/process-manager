@@ -5,6 +5,7 @@ cli.allowUnknownOption(false);
 cli
   .option('init', 'Initialize the process manager', cliInterface.init)
   .option('add <json>', 'Add processes that should run', cliInterface.add)
+  .option('remove <process>', 'Remove a process', cliInterface.remove)
   .option('start <process>', 'Start process', cliInterface.start)
   .option('stop <process>', 'Stop process', cliInterface.stop)
   .option('restart <process>', 'Restart process', cliInterface.restart)

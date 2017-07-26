@@ -35,6 +35,10 @@ function add(file) {
   });
 }
 
+function remove(id) {
+  client.emit('remove', id);
+}
+
 function start(id) {
   client.emit('start', id);
 }
@@ -99,6 +103,7 @@ client.on('messageReceived', () => {
 module.exports = {
   init,
   add,
+  remove,
   start,
   stop,
   restart,
