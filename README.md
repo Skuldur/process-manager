@@ -1,13 +1,19 @@
-# process-manager
+# Eternal Process Manager
 
 The Process Manager allows you to manage the runtime of processes. It allows you to start and stop them at will as well as to keep track of their status and monitor their output.
+
+## Installation
+
+```
+node install eternal-process-manager -g
+```
 
 ## Initialisation
 
 To turn on the Process Manager you must run
 
 ```
-node cli.js
+pcm init
 ```
 
 from inside the src/ directory. Once the initialisation is completed you are free to start adding processes.
@@ -38,7 +44,7 @@ The Process Manager allows you to add processes through JSON files. E.g.
 You are able to control which user is the owner of the process, what the working directory for the process should be and add environmental variables available to the process. To add them you run
 
 ```
-node cli.js add <full-path-to-json-file>
+pcm add <full-path-to-json-file>
 ```
 
 

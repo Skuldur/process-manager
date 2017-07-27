@@ -5,8 +5,8 @@ const colors = require('colors');
 const kill = require('tree-kill');
 
 const client = io.connect('http://localhost');
-const out = fs.openSync('./logs/process-manager.log', 'a');
-const err = fs.openSync('./logs/process-manager.log', 'a');
+const out = fs.openSync('./src/logs/process-manager.log', 'a');
+const err = fs.openSync('./src/logs/process-manager.log', 'a');
 
 function init() {
   /* 
@@ -15,12 +15,12 @@ function init() {
     process-manager.
   */
   killProcessManager(() => {
-    const child = spawn('node', ['./js/ProcessManager/process-interface.js'], {
+    const child = spawn('node', ['./src/js/ProcessManager/process-interface.js'], {
       detached: true,
       stdio: ['ignore', out, err],
     });
 
-    fs.writeFileSync('./data/processrunnerId.txt', child.pid, { flags: 'a' });
+    fs.writeFileSync('./src/data/processrunnerId.txt', child.pid, { flags: 'a' });
 
     process.exit(0);
   })
@@ -87,7 +87,7 @@ function exit() {
 
 function killProcessManager(callback) {
   try {
-    const pid = fs.readFileSync('./data/processrunnerId.txt');
+    const pid = fs.readFileSync('./src/data/processrunnerId.txt');
     kill(pid, 'SIGTERM', callback);
   } catch(err) {
     callback();

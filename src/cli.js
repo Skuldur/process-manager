@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 const cli = require('commander');
 const cliInterface = require('./js/cli-interface.js');
 
