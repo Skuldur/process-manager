@@ -1,6 +1,6 @@
 {
   "name": "eternal-process-manager",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "",
   "main": "cli.js",
   "scripts": {
