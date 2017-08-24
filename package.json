@@ -1,13 +1,13 @@
 {
   "name": "eternal-process-manager",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "pcm": "./src/cli.js"
+    "pcm": "./bin/eternal"
   },
   "author": "Sigurdur Skuli Sigurgeirsson",
   "license": "ISC",
