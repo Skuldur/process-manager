@@ -8,16 +8,6 @@ The Process Manager allows you to manage the runtime of processes. It allows you
 node install eternal-process-manager -g
 ```
 
-## Initialisation
-
-To turn on the Process Manager you must run
-
-```
-pcm init
-```
-
-from inside the src/ directory. Once the initialisation is completed you are free to start adding processes.
-
 ## Adding processes
 
 The Process Manager allows you to add processes through JSON files. E.g.
@@ -52,7 +42,6 @@ pcm add <full-path-to-json-file>
 
 The command line interface of the Process Manager offers the following commands:
 
-    init               Initialize the process manager
     add <json>         Add processes that should run
     remove <process>   Remove a process
     start <process>    Start process
