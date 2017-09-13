@@ -1,15 +1,15 @@
 {
   "tesla": {
     "key": "tesla",
-    "workingDirectory": "/mnt/c/Users/Skuli/Documents/GitHub/process-manager",
-    "file": "node /mnt/c/Users/Skuli/Documents/GitHub/process-manager/test.js",
+    "workingDirectory": "/home/sigurdur/Desktop/dev/teslaclient",
+    "file": "node /home/sigurdur/Desktop/dev/teslaclient/tesla-client.js",
     "user": 0,
     "env": {}
   },
   "chewy": {
     "key": "chewy",
-    "workingDirectory": "/mnt/c/Users/Skuli/Documents/GitHub/process-manager",
-    "file": "node /mnt/c/Users/Skuli/Documents/GitHub/process-manager/test.js",
+    "workingDirectory": "/home/sigurdur/Desktop/chewy/chewy",
+    "file": "node /home/sigurdur/Desktop/chewy/chewy/chewy-service.js",
     "user": 0,
     "env": {}
   }

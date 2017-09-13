@@ -12,7 +12,7 @@ function verifyServerAvailability(cb) {
   client = io.connect('http://localhost');
 
   client.on('connect_error', function() {
-    init(cb);
+    init();
   });
 
   client.on('connect', function () {
@@ -25,7 +25,7 @@ function verifyServerAvailability(cb) {
   });
 }
 
-function init(cb) {
+function init() {
   /* 
     We try killing the process manager in case the user runs the init
     while another process-manager is running. This would cause a runaway
@@ -38,9 +38,7 @@ function init(cb) {
     });
 
     fs.writeFileSync(`${__dirname}/../data/processrunnerId.txt`, child.pid, { flags: 'a' });
-
-    cb();
-  })
+  });
 }
 
 function add(file) {

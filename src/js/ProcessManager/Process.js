@@ -24,7 +24,7 @@ class TerminalProcess {
   }
 
   start() {
-    this.logStream = fs.createWriteStream(`./logs/${this.key}.log`, {flags: 'a'});
+    this.logStream = fs.createWriteStream(`${__dirname}/../../logs/${this.key}.log`, {flags: 'a'});
 
     this.proc = exec(this.file, { uid: this.user, env: this.env, cwd: this.workingDirectory });
 
@@ -36,6 +36,7 @@ class TerminalProcess {
     });
     this.proc.on('close', (code) => {
       console.log(`child process exited with code ${code}`);
+      this.setStatus(TERMINATED);
     });
 
     this.setStatus(ACTIVE);
