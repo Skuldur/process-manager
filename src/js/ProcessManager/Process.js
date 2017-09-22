@@ -33,10 +33,17 @@ class TerminalProcess {
     
     this.proc.on('error', (code) => {
       console.log(`child process exited with code ${code}`);
+      this.logStream.close();
+      if(this.getStatus() === ACTIVE) {
+        this.start();
+      }
     });
     this.proc.on('close', (code) => {
       console.log(`child process exited with code ${code}`);
-      this.setStatus(TERMINATED);
+      this.logStream.close();
+      if(this.getStatus() === ACTIVE) {
+        this.start();
+      }
     });
 
     this.setStatus(ACTIVE);
